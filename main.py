@@ -27,8 +27,8 @@ class InfoDialog(ModalScreen):
         
 class MyApp(App):
     CSS_PATH = "style.tcss"
-    '''CSS = """
-        Label{
+    CSS = """
+    Label{
     height: 3;
     content-align: center middle;
     }
@@ -88,10 +88,10 @@ class MyApp(App):
     }
     /* skip */
     #sl{
-    width: 10
+    width: 15
     }
-    #si{
-    width: 20
+    #ss{
+    width: auto
     }
 
     /* btn */
@@ -99,7 +99,6 @@ class MyApp(App):
     width: 95%
     }
     """
-    '''
     ENABLE_COMMAND_PALETTE = False
     def compose(self):
         yield Header()
