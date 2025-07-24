@@ -1,0 +1,70 @@
+Label{
+  height: 3;
+  content-align: center middle;
+}
+Horizontal{
+  align: left middle
+}
+Input{
+  height: 3;
+}
+/* h */
+#h0{
+  height: 5;
+  width: 100%;
+}
+#h1{
+  height: 5;
+  width: 100%;
+}
+#h2{
+  height: 5;
+  width: 100%;
+  align: center middle;
+}
+#h3{
+  height: 5;
+  width: 100%;
+}
+
+/* File Path */
+#fpl{
+
+  width: 10;
+}
+#fpi{
+
+  width: auto
+}
+
+/* Offset */
+#ol{
+
+  width: 10;
+}
+#oi{
+
+  width: 20
+}
+
+/* length */
+#ll{
+
+  width: 10;
+}
+#li{
+
+  width: 20
+}
+/* skip */
+#sl{
+  width: 10
+}
+#si{
+  width: 20
+}
+
+/* btn */
+#spb{
+  width: 95%
+}

@@ -1,0 +1,7 @@
+.venv/
+main.build/
+main.dist/
+test.file
+1.sh
+main.bin
+1.py
