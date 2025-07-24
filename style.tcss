@@ -58,10 +58,10 @@ Input{
 }
 /* skip */
 #sl{
-  width: 10
+  width: 15
 }
-#si{
-  width: 20
+#ss{
+  width: auto
 }
 
 /* btn */

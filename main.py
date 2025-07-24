@@ -26,8 +26,8 @@ class InfoDialog(ModalScreen):
         self.app.pop_screen()
         
 class MyApp(App):
-    #CSS_PATH = "style.tcss"
-    CSS = """
+    CSS_PATH = "style.tcss"
+    '''CSS = """
         Label{
     height: 3;
     content-align: center middle;
@@ -99,6 +99,7 @@ class MyApp(App):
     width: 95%
     }
     """
+    '''
     ENABLE_COMMAND_PALETTE = False
     def compose(self):
         yield Header()
@@ -113,8 +114,9 @@ class MyApp(App):
                 Input(placeholder="Offset",id="oi"),
                 Label("Length:",id="ll"),
                 Input(placeholder="Length(Byte)",id="li"),
-                Label("Skip:",id="sl"),
-                Input(placeholder="Skip Length(Byte)",id="si"),
+                Label("Skip start:",id="sl"),
+                #Input(placeholder="Skip Length(Byte)",id="si"),
+                Switch("",id="ss"),
                 id="h1"
             ),
             Horizontal(
@@ -147,25 +149,37 @@ class MyApp(App):
                 fp = str(self.query_one("#fpi",Input).value)
                 offs = int(self.query_one("#oi",Input).value)
                 length = int(self.query_one("#li",Input).value)
-                skip = int(self.query_one("#si",Input).value)
+                skip = bool(self.query_one("#ss",Switch).value)
             except Exception:
                 self.call_from_thread(self.set_il,"Incorrect input")
                 time.sleep(1)
                 self.call_from_thread(self.enable_btn)
                 return 
+            #self.call_from_thread(self.set_il,bool(skip))
+            #raise SystemError
             size = os.path.getsize(fp)
             interval = offs 
-            offset = skip
+            if skip:
+                self.call_from_thread(self.set_il,str("skip"))
+            else:
+                self.call_from_thread(self.set_il,str("noskip"))
+            #raise SystemError
+            offset = 0
             with open(fp,"r+b") as f:
                 while offset + length < size:
+                    if offset == 0:
+                        if skip:
+                            offset += interval
+                            continue
                     f.seek(offset)
                     for i in range(length):
                         f.write(b"\x00")
-                        
                     offset += interval
+                    
             self.call_from_thread(self.set_il,"Completed!")
         except Exception as e:
-            self.call_from_thread(self.set_il,e)
+            #self.call_from_thread(self.set_il,e)
+            ...
         self.call_from_thread(self.enable_btn)
     def set_il(self,msg):
         msg = str(msg)
